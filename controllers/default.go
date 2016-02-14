@@ -8,8 +8,18 @@ type MainController struct {
 	beego.Controller
 }
 
-func (c *MainController) Get() {
-	c.Data["Website"] = "beego.me"
-	c.Data["Email"] = "astaxie@gmail.com"
-	c.TplNames = "index.tpl"
+func (this *MainController) Get() {
+	this.TplNames = "pages/index.tpl"
+
+	this.Layout = "layouts/index.tpl"
+	this.LayoutSections = make(map[string]string)
+	this.LayoutSections["HtmlHead"] = "layouts/head.tpl"
+	this.LayoutSections["Nav"] = "layouts/nav.tpl"
+	this.LayoutSections["Sidebar"] = "layouts/sidebar.tpl"
+	this.LayoutSections["Header"] = "layouts/header.tpl"
+	this.LayoutSections["Footer"] = "layouts/footer.tpl"
+}
+
+func (this *MainController) Login() {
+	this.TplNames = "pages/login.tpl"
 }
